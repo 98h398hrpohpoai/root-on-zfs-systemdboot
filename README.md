@@ -26,7 +26,7 @@ Known issues:
 - First time switching between OSes on ZFS will causes initramfs to complain about the zpool last being loaded by a different OS (which is true) and will require you to "**zpool import -a -f && zpool export -a**" from initramfs and then reboot.  
 System will boot the second time around.  
 There's probably a simple fix for this, but it hasn't been a priority to figure it out.
-- Conflicts will likely emerge with the use of "**zfs mount -a**" for this pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
+- Conflicts will likely emerge with the use of "**zfs mount -a**" if both OSes are in the same pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
 Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools. 
 
 # fstab
