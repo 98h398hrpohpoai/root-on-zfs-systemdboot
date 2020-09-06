@@ -21,16 +21,16 @@ Dataset hierarchy (bold datasets have no mountpoint and are for organization pur
   
 dpool/buster and dpool/testing are both root datasets with a mountpoint of "/".  
 To avoid conflicts, both are set to canmount=noauto and only mounted via the entries in /efi/loader/entries.  
-Conflicts will likely emerge with the use of "zfs mount -a" for this pool, though can be avoid by changing the mount point prior to use e.g. "zfs set mountpoint=/mnt data/dpool/testing" and changing it back when done.  
-Effectively the same as "zpool import -R /mnt somepool" if you maintain separate OS pools.  
+Conflicts will likely emerge with the use of "**zfs mount -a**" for this pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
+Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools.  
   
 Known issues:
-- First time switching between OSes on ZFS will causes initramfs to complain about the zpool last being loaded by a different OS (which is true) and will require you to "zpool import -a -f && zpool export -a" from initramfs and then reboot.  
+- First time switching between OSes on ZFS will causes initramfs to complain about the zpool last being loaded by a different OS (which is true) and will require you to "**zpool import -a -f && zpool export -a**" from initramfs and then reboot.  
 System will boot the second time around.  
 There's probably a simple fix for this, but it hasn't been a priority to figure it out.
 
 # fstab
 Example fstab for mounting the systemd partition.  
 In this example the systemd-boot partition (/boot/efi) will only mount once something tries to access it for the first time.  
-If you "ls -la /boot/efi" prior to actually trying to accesse the device, you won't see anything.  
+If you "**ls -la /boot/efi**" prior to actually trying to accesse the device, you won't see anything.  
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
