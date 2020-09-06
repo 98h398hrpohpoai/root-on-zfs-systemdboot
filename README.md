@@ -1,16 +1,16 @@
 # ZFS-on-Root with Systemd-Boot
-This example is completed with Debian-based distros.  
+This example is completed with dual-booting two Debian-based distros both with root-on-zfs.  
 Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
   
 Zpool name = data  
 Dataset hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
 - **data/dpool**  
-- data/dpool/buster                     
+- data/dpool/buster (OS)                     
 - data/dpool/home                       
 - data/dpool/home/root (mounted at /root)                  
 - data/dpool/opt                        
 - data/dpool/srv                        
-- data/dpool/testing (debian bullseye/testing)  
+- data/dpool/testing (OS)  
 - **data/dpool/usr**                         
   - **data/dpool/usr/lib**                      
     - data/dpool/usr/lib/plexmediaserver     
