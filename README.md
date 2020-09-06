@@ -19,7 +19,7 @@ Dataset hierarchy (bold datasets have no mountpoint and are for organization pur
   - **data/dpool/var/lib**                       
     - data/dpool/var/lib/plexmediaserver   
   
-dpool/buster and dpool/testing are both root datasets with a mountpoint of "/".  
+**dpool/buster** and **dpool/testing** are both root datasets with a mountpoint of "/".  
 To avoid conflicts, both are set to canmount=noauto and only mounted via the entries in /efi/loader/entries.  
 Conflicts will likely emerge with the use of "**zfs mount -a**" for this pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
 Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools.  
