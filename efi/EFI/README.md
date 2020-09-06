@@ -1,4 +1,4 @@
-Kernel files go into their own directories here, along with any bootloaders (installed by bootctl install).  
+Kernel files go into their own directories here, along with any bootloaders (installed via "bootctl install").  
 Example directory listing might look like:  
 - BOOT  
 - Debian-Buster  
