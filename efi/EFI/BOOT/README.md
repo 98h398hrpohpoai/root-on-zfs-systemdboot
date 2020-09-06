@@ -1,1 +1,1 @@
-a
+Generated dynamically by "bootctl install"
