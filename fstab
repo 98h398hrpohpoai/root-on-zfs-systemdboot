@@ -1,0 +1,10 @@
+# <device>                                     <dir>       <type>   <options>
+PARTUUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx /boot/efi    vfat     nofail,x-systemd.device-timeout=1 0 1
+
+tmpfs                                         /tmp         tmpfs    mode=1777,nosuid,nodev 0 0
+
+tmpfs                                         /var/lock    tmpfs    mode=1777,nosuid,nodev 0 0
+
+tmpfs                                         /var/run     tmpfs    mode=1777,nosuid,nodev 0 0
+
+tmpfs                                         /run         tmpfs    mode=1777,nosuid,nodev 0 0
