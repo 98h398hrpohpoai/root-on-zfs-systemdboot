@@ -1,4 +1,4 @@
-Kernel files can be placed here either dynamically or manually.  
+Kernel files can be placed here either dynamically via a postinst script or manually.  
 - config  
 - initrd.img  
 - System.map  
