@@ -40,6 +40,8 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
 I honestly forgot why -s 1 (or -s 2) is sometimes needed.  
 Something about the filesystem size not being large enough; this has always worked for me when "**mkfs.vfat -F 32 /dev/xxxy**" hasn't.  
 
+"**blkid**" will provide the UUID for use in the fstab discussed below.
+
 # fstab
 Example fstab for mounting the systemd partition.  
 In this example the systemd-boot partition (/boot/efi) will only mount once something tries to access it for the first time.  
