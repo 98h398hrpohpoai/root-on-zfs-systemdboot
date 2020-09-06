@@ -5,4 +5,5 @@ Mounted to /boot because when generating new kernels, debian-based distros canno
   
 /boot should be part of the root file system; with zfs-on-root this can be either a separate bpool, or simply part of the root filesystem on rpool/ROOT/default  
 
-Personally I don't see a point for a separate bpool when going this route as it adds another layer of complexity when it comes to pool mounting
+Personally I don't see a point for a separate bpool when going this route as it adds another layer of complexity when it comes to pool mounting.  
+For extra style-points, chmod 0000 /boot/efi when unmounted to avoid random files being generated there and causing mounting problems later.
