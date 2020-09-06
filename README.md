@@ -30,5 +30,7 @@ System will boot the second time around.
 There's probably a simple fix for this, but it hasn't been a priority to figure it out.
 
 # fstab
-Example fstab for mounting the systemd partition; current settings won't mount the /boot/efi partition once the system switches over to zfs unless something tries to access it.  
+Example fstab for mounting the systemd partition.  
+In this example the systemd-boot partition (/boot/efi) will only mount once something tries to access it for the first time.  
+If you "ls -la /boot/efi" prior to actually trying to accesse the device, you won't see anything.  
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
