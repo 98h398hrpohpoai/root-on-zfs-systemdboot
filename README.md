@@ -3,7 +3,7 @@ This example is completed with Debian-based distros.
 Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
   
 Zpool name = data  
-Data set hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
+Dataset hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
 - **data/dpool**  
 - data/dpool/buster                     
 - data/dpool/home                       
