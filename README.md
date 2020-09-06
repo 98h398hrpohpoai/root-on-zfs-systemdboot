@@ -35,7 +35,8 @@ xxx is the device name e.g. /dev/sda; y is the partition.
 In the case of a freshly formatted drive, /dev/xxx might be something like /dev/sda and y = 1 (whichever partition was just created).
 - "**parted /dev/xxx mkpart "Bootloader" fat32 4096s 1GB**"
 - "**parted /dev/xxx set y BOOT on**"
-- "**mkfs.vfat -F 32 -s 1 /dev/xxxy**"  
+- "**mkfs.vfat -F 32 -s 1 /dev/xxxy**"    
+
 I honestly forgot why -s 1 (or -s 2) is sometimes needed.  
 Something about the filesystem size not being large enough; this has always worked for me when "**mkfs.vfat -F 32 /dev/xxxy**" hasn't.  
 
