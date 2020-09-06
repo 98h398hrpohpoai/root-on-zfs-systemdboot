@@ -1,6 +1,6 @@
 # ZFS-on-Root with Systemd-Boot
 This example is completed with Debian-based distros.  
-Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installed of Ubuntu for recovery purposes.  
+Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
   
 Zpool name = data  
 Data set hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
