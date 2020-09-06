@@ -29,6 +29,14 @@ There's probably a simple fix for this, but it hasn't been a priority to figure 
 - Conflicts will likely emerge with the use of "**zfs mount -a**" if both OSes are in the same pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
 Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools. 
 
+# Boot partition
+Boot partition is a separate device from the bpool formatted in vfat/fat32 with the boot flag enabled.
+xxx is the device name e.g. /dev/sda; y is the partition.
+In the case of a freshly formatted drive, below would be /dev/xxx /dev/sda and y = 1 (whichever partition was just created).
+- "**parted /dev/xxx mkpart "Linux Bootloader" vfat 4096s 1GB**"
+- "**parted /dev/xxx set y BOOT on**"
+- "**mkfs.vfat -F 32 -s 1 /dev/xxxx**"
+
 # fstab
 Example fstab for mounting the systemd partition.  
 In this example the systemd-boot partition (/boot/efi) will only mount once something tries to access it for the first time.  
