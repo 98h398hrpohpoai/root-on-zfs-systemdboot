@@ -30,9 +30,9 @@ There's probably a simple fix for this, but it hasn't been a priority to figure 
 Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools. 
 
 # Boot partition
-Boot partition is a separate device from the zpool formatted in vfat/fat32 with the boot flag enabled.
-xxx is the device name e.g. /dev/sda; y is the partition.
-In the case of a freshly formatted drive, /dev/xxx might be something like /dev/sda and y = 1 (whichever partition was just created).
+Boot partition is a separate device from the zpool formatted in vfat/fat32 with the boot flag enabled.  
+xxx is the device name e.g. /dev/sda; y is the partition.  
+In the case of a freshly formatted drive, /dev/xxx might be something like /dev/sda and y = 1 (whichever partition was just created).  
 - "**parted /dev/xxx mkpart "Bootloader" fat32 4096s 1GB**"
 - "**parted /dev/xxx set y BOOT on**"
 - "**mkfs.vfat -F 32 -s 1 /dev/xxxy**"    
