@@ -44,7 +44,8 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
 
 "**blkid**" will provide the UUID for use in the fstab discussed below.
 
-Once formatting is complete, the bootloader can be installed via "**bootctl install --path=/boot/efi**" in a debian-based distro.  
+Once formatting is complete, the bootloader can be installed via "**bootctl install --path=/boot/efi**" in a debian-based distro.   
+  
 To make your zpool bootable, you can either mount the root fs and move the kernel files manually to match the layout in the efi directory referenced here, or you can chroot into the zfs filesystem, install the kernel-update script below, and run it.  
 If it goes well, it should take care of the boot for you.
 
