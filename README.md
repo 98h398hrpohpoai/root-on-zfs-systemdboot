@@ -86,7 +86,7 @@ chown root: /etc/kernel/postinst.d/zz-update-systemd-boot*
 chmod 0755 /etc/kernel/postinst.d/zz-update-systemd-boot*
 
 # One for the kernel's postrm:
-cd /etc/kernel/postrm.d/ && ln -s ../postinst.d/zz-update-systemd-boot zz-update-systemd-boot*
+cd /etc/kernel/postrm.d/ && ln -s ../postinst.d/zz-update-systemd-boot* zz-update-systemd-boot
 
 # Note: Ubuntu does not usually create the necessary hook folder
 # for initramfs, so the next line will take care of that if
@@ -95,7 +95,7 @@ cd /etc/kernel/postrm.d/ && ln -s ../postinst.d/zz-update-systemd-boot zz-update
 [ -d "/etc/initramfs/post-update.d" ] || mkdir -p /etc/initramfs/post-update.d
 
 # And now we can add the symlink:
-cd /etc/initramfs/post-update.d/ && ln -s ../../kernel/postinst.d/zz-update-systemd-boot* zz-update-systemd-boot*
+cd /etc/initramfs/post-update.d/ && ln -s ../../kernel/postinst.d/zz-update-systemd-boot* zz-update-systemd-boot
 ```  
 Note: If grub was previously installed then remove grub as well.
 ```
