@@ -1,8 +1,6 @@
 #!/bin/bash
-#
 # This is a simple kernel hook to populate the systemd-boot entries
 # whenever kernels are added or removed.
-#
 
 # The UUID of your disk.
 UUID="CHANGEME"
