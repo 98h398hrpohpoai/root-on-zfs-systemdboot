@@ -4,16 +4,9 @@
 # whenever kernels are added or removed.
 #
 
-# The UUID of your disk.
-#UUID="CHANGEME"
-
-# The LUKS volume slug you want to use, which will result in the
-# partition being mounted to /dev/mapper/CHANGEME.
-#VOLUME="CHANGEME"
-
 # Any rootflags you wish to set. For example, mine are currently
 # "subvol=@ quiet splash intel_pstate=enable".
-#ROOTFLAGS=""
+#ROOTFLAGS=""; added after "boot=zfs" if desired
 ZFSROOT="data/dpool/buster"
 OS="Debian"
 OSV="Buster"
