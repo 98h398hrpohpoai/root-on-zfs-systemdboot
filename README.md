@@ -75,8 +75,9 @@ There's no need to mount an extra filesystem (especially a boot partition) if it
 Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.   
 This is necessary if you want to automatically update the kernel on the boot partition (otherwise the booting kernel will never change despite upgrading it on the zfs filesystem).  
 Per Blobfolio's instructions, the "zz-" script can be copied into "**/etc/kernel/postinst.d/**".  
-Only copy **one script** *--whichever is appropriate to the OS--* e.g. zz-update-systemd-boot-zfs for a zfs root, or zz-update-systemd-boot-uuid for a non-zfs root i.e. ext4.  
-Copying both may result in the system not booting.  
+Only copy **one script** *--whichever is appropriate to the OS--* per filesystem e.g. zz-update-systemd-boot-zfs for a zfs root, or zz-update-systemd-boot-uuid for a non-zfs root i.e. ext4.  
+Copying both to the same file system may result in the system not booting.  
+Note you can copy one to each fs e.g. copy the zfs script to a zfs root, as well as copying the uuid to an ext4 root.  
 Once the script is in place, follow the instructions below:  
 ```
 # Set the right owner.
