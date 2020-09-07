@@ -40,7 +40,7 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
   - Activates the "boot" flag the newly created partition
 - "**mkfs.vfat -F 32 -s 1 /dev/xxxy**" 
   - Creates the fat32 filesystem on the newly created partition
-  - "-s 1" (or "-s 2") is sometimes needed as the OS may complain about the filesystem size.  
+  - "-s 1" may or may not be needed depending on whether the device is formatted with 512b or 4k sectors.  
 
 "**blkid**" will provide the UUID for use in the fstab discussed below.
 
