@@ -56,4 +56,23 @@ If you "**ls -la /boot/efi**" prior to actually trying to write to the device, y
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
 
 # Kernel-update scripts
-Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.
+Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.  
+Per those instructions, the script can be copied into /etc/kernel/postinst.d/, then follow his instructions below:  
+```
+# Set the right owner.
+chown root: /etc/kernel/postinst.d/zz-update-systemd-boot
+# Make it executable.
+chmod 0755 /etc/kernel/postinst.d/zz-update-systemd-boot
+
+# One for the kernel's postrm:
+cd /etc/kernel/postrm.d/ && ln -s ../postinst.d/zz-update-systemd-boot zz-update-systemd-boot
+
+# Note: Ubuntu does not usually create the necessary hook folder
+# for initramfs, so the next line will take care of that if
+# needed. (And yes, it *is* supposed to be "initramfs" and not
+# "initramfs-tools"!)
+[ -d "/etc/initramfs/post-update.d" ] || mkdir -p /etc/initramfs/post-update.d
+
+# And now we can add the symlink:
+cd /etc/initramfs/post-update.d/ && ln -s ../../kernel/postinst.d/zz-update-systemd-boot zz-update-systemd-boot
+```
