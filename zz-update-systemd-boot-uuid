@@ -5,16 +5,11 @@
 #
 
 # The UUID of your disk.
-#UUID="CHANGEME"
-
-# The LUKS volume slug you want to use, which will result in the
-# partition being mounted to /dev/mapper/CHANGEME.
-#VOLUME="CHANGEME"
+UUID="CHANGEME"
 
 # Any rootflags you wish to set. For example, mine are currently
 # "subvol=@ quiet splash intel_pstate=enable".
 #ROOTFLAGS=""
-#ZFSROOT="data/dpool/testing"
 OS="Ubuntu"
 OSV="20.04"
 
@@ -48,7 +43,7 @@ for FILE in config initrd.img System.map vmlinuz; do
 title   ${OS} ${OSV}
 linux   /EFI/${OS}-${OSV}/vmlinuz
 initrd  /EFI/${OS}-${OSV}/initrd.img
-options root=zfs=${ZFSROOT} boot=zfs
+options root=UUID=${UUID} rw
 EOF
 done
 
@@ -64,7 +59,8 @@ if [ ${#KERNELS[@]} -gt 1 ]; then
 title   ${OS} ${OSV} ${VERSION}
 linux   /EFI/${OS}-${OSV}/vmlinuz-${VERSION}
 initrd  /EFI/${OS}-${OSV}/initrd.img-${VERSION}
-options root=zfs=${ZFSROOT} boot=zfs
+options root=UUID=${UUID} rw
+
 EOF
 	    done
 	done
