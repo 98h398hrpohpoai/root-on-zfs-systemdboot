@@ -56,8 +56,8 @@ Note: With method #2 you should see (xxxxxx being the kernel version):
 - update-initramfs: Generating /boot/initrd.img-xxxxxx
 - systemd-boot xxxxxx
 
-If there's no out then there's an issue generating the kernel e.g. missing headers, /boot/efi isn't mounted, /boot isn't a writable fs, etc.  
-If you've ruled out any errors in the script, I've sometimes found purging and reinstalling the kernel resolves the issue.
+If there's no output then there's an issue generating the kernel e.g. missing headers, /boot/efi isn't mounted, /boot isn't a writable fs, directory errors in the script, etc.  
+If you've ruled out any errors in the update script, I've sometimes found purging and reinstalling the kernel resolves the issue.
 
 # efi
 Example hierarchy of the systemd-boot/efi partition.
