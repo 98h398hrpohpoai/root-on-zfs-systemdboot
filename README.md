@@ -121,3 +121,4 @@ mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | \
     xargs -i{} umount -lf {}
 zpool export -a
 ```
+Note: Secure boot isn't included as the default kernels are tainted and won't boot without module signing.
