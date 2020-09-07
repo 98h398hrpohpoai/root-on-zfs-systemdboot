@@ -59,7 +59,7 @@ Note: With method #2 you should see (xxxxxx being the kernel version):
 If there's no output then there's an issue generating the kernel e.g. missing headers, /boot/efi isn't mounted, /boot isn't a writable fs, directory errors in the script, etc.  
 If you've ruled out any errors in the update script, I've sometimes found purging and reinstalling the kernel resolves the issue.
 
-# efi
+# efi folder
 Example hierarchy of the systemd-boot/efi partition.
 
 # fstab
