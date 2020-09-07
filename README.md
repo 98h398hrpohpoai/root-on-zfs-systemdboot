@@ -29,7 +29,7 @@ There's probably a simple fix for this, but it hasn't been a priority to figure 
 - Conflicts will likely emerge with the use of "**zfs mount -a**" if both OSes are in the same pool, though can be avoid by changing the mount point prior to use e.g. "**zfs set mountpoint=/mnt data/dpool/testing**" and changing it back when done.  
 Effectively the same as "**zpool import -R /mnt somepool**" if you maintain separate OS pools. 
 
-# Boot partition
+# Boot partition (/boot/efi)
 Boot partition is a separate device from the zpool, and formatted in vfat/fat32 with the boot flag enabled.  
 xxx is the device name e.g. /dev/sda; y is the partition number of that device.  
 In the case of a freshly formatted drive, /dev/xxx might be something like /dev/sda and y = 1 (whichever partition was just created) e.g. /dev/sda1.  
