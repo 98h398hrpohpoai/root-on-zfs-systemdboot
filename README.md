@@ -46,6 +46,8 @@ You can try without using "**mkfs.vfat -F 32 /dev/xxxy**", although there's no f
 
 "**blkid**" will provide the UUID for use in the fstab discussed below.
 
+Once formatting is complete, the bootloader can be installed via "**bootctl install --path=/boot/efi**" in a debian-based distro.  
+
 # efi
 Example hierarchy of the systemd-boot/efi partition.
 
