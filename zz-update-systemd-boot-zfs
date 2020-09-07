@@ -5,9 +5,10 @@
 # Any rootflags you wish to set. For example, mine are currently
 # "subvol=@ quiet splash intel_pstate=enable".
 #ROOTFLAGS=""; added after "boot=zfs" if desired; disabled due to issues booting and didn't have a need to fix
-ZFSROOT="data/dpool/buster"
+ZFSROOT="monclova/debian"
 OS="Debian"
 OSV="Buster"
+ROOTTYPE="zfs"
 
 # Our kernels.
 KERNELS=()
@@ -25,20 +26,20 @@ fi
 
 # Perform a nuclear clean to ensure everything is always in
 # perfect sync.
-rm /boot/efi/loader/entries/${OS}-${OSV}.conf
-rm -rf /boot/efi/EFI/${OS}-${OSV}
-mkdir /boot/efi/EFI/${OS}-${OSV}
+rm /boot/efi/loader/entries/${OS}-${OSV}-${ROOTTYPE}.conf
+rm -rf /boot/efi/EFI/${OS}-${OSV}-${ROOTTYPE}
+mkdir /boot/efi/EFI/${OS}-${OSV}-${ROOTTYPE}
 
 # Copy the latest kernel files to a consistent place so we can
 # keep using the same loader configuration.
 LATEST="${KERNELS[@]:0:1}"
 echo -e "\e[2msystemd-boot\e[0m \e[1;32m${LATEST}\e[0m"
 for FILE in config initrd.img System.map vmlinuz; do
-    cp "/boot/${FILE}-${LATEST}" "/boot/efi/EFI/${OS}-${OSV}/${FILE}"
-    cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}.conf
-title   ${OS} ${OSV}
-linux   /EFI/${OS}-${OSV}/vmlinuz
-initrd  /EFI/${OS}-${OSV}/initrd.img
+    cp "/boot/${FILE}-${LATEST}" "/boot/efi/EFI/${OS}-${OSV}-${ROOTTYPE}/${FILE}"
+    cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}-${ROOTTYPE}.conf
+title   ${OS} ${OSV} (${ROOTTYPE})
+linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz
+initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img
 options root=zfs=${ZFSROOT} boot=zfs
 EOF
 done
@@ -50,11 +51,11 @@ if [ ${#KERNELS[@]} -gt 1 ]; then
 	for VERSION in "${LEGACY[@]}"; do
 	    echo -e "\e[2msystemd-boot\e[0m \e[1;32m${VERSION}\e[0m"
 	    for FILE in config initrd.img System.map vmlinuz; do
-	        cp "/boot/${FILE}-${VERSION}" "/boot/efi/EFI/${OS}-${OSV}/${FILE}-${VERSION}"
-	        cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}-${VERSION}.conf
-title   ${OS} ${OSV} ${VERSION}
-linux   /EFI/${OS}-${OSV}/vmlinuz-${VERSION}
-initrd  /EFI/${OS}-${OSV}/initrd.img-${VERSION}
+	        cp "/boot/${FILE}-${VERSION}" "/boot/efi/EFI/${OS}-${OSV}-${ROOTTYPE}/${FILE}-${VERSION}"
+	        cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}-${ROOTTYPE}-${VERSION}.conf
+title   ${OS} ${OSV} (${ROOTTYPE}) ${VERSION}
+linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz-${VERSION}
+initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img-${VERSION}
 options root=zfs=${ZFSROOT} boot=zfs
 EOF
 	    done
