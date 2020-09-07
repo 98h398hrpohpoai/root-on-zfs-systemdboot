@@ -6,7 +6,7 @@
 # "subvol=@ quiet splash intel_pstate=enable".
 #ROOTFLAGS=""; added after "boot=zfs" if desired; disabled due to issues booting and didn't have a need to fix
 #ZFSROOT="monclova/debian"
-UUID=cabca344-b34a-4748-b9da-ccdcd442df38
+UUID="cabca344-b34a-4748-b9da-ccdcd442df38"
 OS="Debian"
 OSV="Buster"
 ROOTTYPE="ext4"
