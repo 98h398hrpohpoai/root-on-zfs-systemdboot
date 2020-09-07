@@ -47,7 +47,7 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
 Once formatting is complete, the bootloader can be installed via "**bootctl install --path=/boot/efi**" in a debian-based distro.   
   
 To make your zpool bootable you have two options.  
-Both require you to mount the new boot partition to /boot/efi on the filesystem you'd like to boot (which may already be done if using chroot with the steps above).  
+Both require you to mount the new boot partition to /boot/efi on the filesystem you'd like to boot (which may already be done if bootctl was installed via chroot).  
 1. Mount the root fs and move the kernel files to the boot partition manually, making sure to match the layout in the efi directory referenced here.
 2. Chroot into the zfs filesystem, install the kernel-update script below, and run "**update-initramfs -u -k all**".  (this validates the script as well)
 If it goes well, it should take care of the boot for you.  
