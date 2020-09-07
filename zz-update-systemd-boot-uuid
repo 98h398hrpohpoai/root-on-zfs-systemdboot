@@ -9,7 +9,7 @@ UUID="CHANGEME"
 
 # Any rootflags you wish to set. For example, mine are currently
 # "subvol=@ quiet splash intel_pstate=enable".
-#ROOTFLAGS=""
+#ROOTFLAGS=""; added after "root=UUID=${UUID} rw" if desired; disabled due to issues booting and didn't have a need to fix
 OS="Ubuntu"
 OSV="20.04"
 
