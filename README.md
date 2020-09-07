@@ -1,4 +1,4 @@
-# ZFS-on-Root with Systemd-Boot
+#Dual-Boot ZFS-on-Root with Systemd-Boot
 This example is completed with dual-booting two Debian-based distros both with root-on-zfs.  
 Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
   
