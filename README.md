@@ -36,7 +36,7 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
 - "**parted /dev/xxx mkpart "Bootloader" fat32 4096s 1GB**" 
   - Creates a 1GB partition, although you can go smaller if you're space-constrained.  
   Three Linux kernels and a Windows bootloader + recovery only uses ~240M. 
-- "**parted /dev/xxx set y BOOT on**" 
+- "**parted /dev/xxx set y BOOT ON**" 
   - Activates the "boot" flag the newly created partition
 - "**mkfs.vfat -F 32 -s 1 /dev/xxxy**" 
   - Creates the fat32 filesystem on the newly created partition
