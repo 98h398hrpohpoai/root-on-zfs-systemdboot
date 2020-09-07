@@ -1,6 +1,7 @@
-# Dual-Boot ZFS-on-Root with Systemd-Boot
+# Dual-Boot Root-on-ZFS with Systemd-Boot
 This example is completed with dual-booting two Debian-based distros both with root-on-zfs.  
 Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
+Reference for [Root-on-ZFS with Debian Buster](https://openzfs.github.io/openzfs-docs/Getting%20Started/Debian/Debian%20Buster%20Root%20on%20ZFS.html).
   
 Zpool name = data  
 Dataset hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
@@ -104,4 +105,19 @@ apt-get purge grub*
 
 # Purge any obsolete dependencies.
 apt-get autoremove --purge
+```
+# Chroot
+Quick and dirty copypasta for chroot  
+```
+mount --rbind /dev  /mnt/dev
+mount --rbind /proc /mnt/proc
+mount --rbind /sys  /mnt/sys
+chroot /mnt /bin/bash
+```
+Exit and unmount the zfs filesystem  
+```
+exit
+mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | \
+    xargs -i{} umount -lf {}
+zpool export -a
 ```
