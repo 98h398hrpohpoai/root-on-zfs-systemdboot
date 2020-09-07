@@ -2,14 +2,11 @@
 # This is a simple kernel hook to populate the systemd-boot entries
 # whenever kernels are added or removed.
 
-# Any rootflags you wish to set. For example, mine are currently
-# "subvol=@ quiet splash intel_pstate=enable".
-#ROOTFLAGS=""; added after "boot=zfs" if desired; disabled due to issues booting and didn't have a need to fix
-#ZFSROOT="data/dpool/buster"
-UUID="cabca344-b34a-4748-b9da-ccdcd442df38"
-OS="Debian"
-OSV="Buster"
-ROOTTYPE="ext4"
+UUID="CHANGEME"
+OS="CHANGEME E.G. Debian"
+OSV="CHANGEME E.G. Buster"
+ROOTTYPE="CHANGEME; ONLY AFFECTS OS DISPLAY IN MENU E.G. ext4"
+KERNELPARAMETERS="CHANGEME; Add extra options here e.g. quiet splash; remove all text if not using any options"
 
 # Our kernels.
 KERNELS=()
@@ -41,7 +38,7 @@ for FILE in config initrd.img System.map vmlinuz; do
 title   ${OS} ${OSV} (${ROOTTYPE})
 linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz
 initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img
-options root=UUID=${UUID} rw
+options root=UUID=${UUID} rw ${KERNELPARAMETERS}
 EOF
 done
 
@@ -57,7 +54,7 @@ if [ ${#KERNELS[@]} -gt 1 ]; then
 title   ${OS} ${OSV} (${ROOTTYPE}) ${VERSION}
 linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz-${VERSION}
 initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img-${VERSION}
-options root=UUID=${UUID} rw
+options root=UUID=${UUID} rw ${KERNELPARAMETERS}
 EOF
 	    done
 	done
