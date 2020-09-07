@@ -1,0 +1,75 @@
+#!/bin/bash
+#
+# This is a simple kernel hook to populate the systemd-boot entries
+# whenever kernels are added or removed.
+#
+
+# The UUID of your disk.
+#UUID="CHANGEME"
+
+# The LUKS volume slug you want to use, which will result in the
+# partition being mounted to /dev/mapper/CHANGEME.
+#VOLUME="CHANGEME"
+
+# Any rootflags you wish to set. For example, mine are currently
+# "subvol=@ quiet splash intel_pstate=enable".
+#ROOTFLAGS=""
+ZFSROOT="data/dpool/buster"
+OS="Debian"
+OSV="Buster"
+
+# Our kernels.
+KERNELS=()
+FIND="find /boot -maxdepth 1 -name 'vmlinuz-*' -type f -not -name '*.dpkg-tmp' -print0 | sort -Vrz"
+while IFS= read -r -u3 -d $'\0' LINE; do
+	KERNEL=$(basename "${LINE}")
+	KERNELS+=("${KERNEL:8}")
+done 3< <(eval "${FIND}")
+
+# There has to be at least one kernel.
+if [ ${#KERNELS[@]} -lt 1 ]; then
+	echo -e "\e[2msystemd-boot\e[0m \e[1;31mNo kernels found.\e[0m"
+	exit 1
+fi
+
+# Perform a nuclear clean to ensure everything is always in
+# perfect sync.
+rm /boot/efi/loader/entries/${OS}-${OSV}.conf
+rm -rf /boot/efi/EFI/${OS}-${OSV}
+mkdir /boot/efi/EFI/${OS}-${OSV}
+
+# Copy the latest kernel files to a consistent place so we can
+# keep using the same loader configuration.
+LATEST="${KERNELS[@]:0:1}"
+echo -e "\e[2msystemd-boot\e[0m \e[1;32m${LATEST}\e[0m"
+for FILE in config initrd.img System.map vmlinuz; do
+    cp "/boot/${FILE}-${LATEST}" "/boot/efi/EFI/${OS}-${OSV}/${FILE}"
+    cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}.conf
+title   ${OS} ${OSV}
+linux   /EFI/${OS}-${OSV}/vmlinuz
+initrd  /EFI/${OS}-${OSV}/initrd.img
+options root=zfs=${ZFSROOT} boot=zfs
+EOF
+done
+
+# Copy any legacy kernels over too, but maintain their version-
+# based names to avoid collisions.
+if [ ${#KERNELS[@]} -gt 1 ]; then
+	LEGACY=("${KERNELS[@]:1}")
+	for VERSION in "${LEGACY[@]}"; do
+	    echo -e "\e[2msystemd-boot\e[0m \e[1;32m${VERSION}\e[0m"
+	    for FILE in config initrd.img System.map vmlinuz; do
+	        cp "/boot/${FILE}-${VERSION}" "/boot/efi/EFI/${OS}-${OSV}/${FILE}-${VERSION}"
+	        cat << EOF > /boot/efi/loader/entries/${OS}-${OSV}-${VERSION}.conf
+title   ${OS} ${OSV} ${VERSION}
+linux   /EFI/${OS}-${OSV}/vmlinuz-${VERSION}
+initrd  /EFI/${OS}-${OSV}/initrd.img-${VERSION}
+options root=zfs=${ZFSROOT} boot=zfs
+EOF
+	    done
+	done
+fi
+
+# Success!
+echo -e "\e[2m---\e[0m"
+exit 0
