@@ -5,10 +5,11 @@
 # Any rootflags you wish to set. For example, mine are currently
 # "subvol=@ quiet splash intel_pstate=enable".
 #ROOTFLAGS=""; added after "boot=zfs" if desired; disabled due to issues booting and didn't have a need to fix
-ZFSROOT="monclova/debian"
+ZFSROOT="data/dpool/buster"
 OS="Debian"
 OSV="Buster"
 ROOTTYPE="zfs"
+KERNELPARAMETERS=""
 
 # Our kernels.
 KERNELS=()
@@ -40,7 +41,7 @@ for FILE in config initrd.img System.map vmlinuz; do
 title   ${OS} ${OSV} (${ROOTTYPE})
 linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz
 initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img
-options root=zfs=${ZFSROOT} boot=zfs
+options root=zfs=${ZFSROOT} boot=zfs ${KERNELPARAMETERS}
 EOF
 done
 
@@ -56,7 +57,7 @@ if [ ${#KERNELS[@]} -gt 1 ]; then
 title   ${OS} ${OSV} (${ROOTTYPE}) ${VERSION}
 linux   /EFI/${OS}-${OSV}-${ROOTTYPE}/vmlinuz-${VERSION}
 initrd  /EFI/${OS}-${OSV}-${ROOTTYPE}/initrd.img-${VERSION}
-options root=zfs=${ZFSROOT} boot=zfs
+options root=zfs=${ZFSROOT} boot=zfs ${KERNELPARAMETERS}
 EOF
 	    done
 	done
