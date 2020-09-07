@@ -46,8 +46,11 @@ You can try without using "**mkfs.vfat -F 32 /dev/xxxy**", although there's no f
 
 "**blkid**" will provide the UUID for use in the fstab discussed below.
 
+# efi
+Example hierarchy of the systemd-boot/efi partition.
+
 # fstab
-Example fstab for mounting the systemd partition.  
-In this example the systemd-boot partition (/boot/efi) will only mount once something tries to access it for the first time.  
-If you "**ls -la /boot/efi**" prior to actually trying to accesse the device, you won't see anything.  
+Example fstab for mounting the systemd-boot partition to /boot/efi once the zfs-root is fully loaded.  
+In this example the systemd-boot partition (/boot/efi) will only mount onto the zfs root once something tries to access it for the first time e.g. a kernel update.  
+If you "**ls -la /boot/efi**" prior to actually trying to write to the device, you likely won't see anything.  
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
