@@ -48,6 +48,7 @@ Once formatting is complete, the bootloader can be installed via "**bootctl inst
   
 To make your zpool bootable, you can either mount the root fs and move the kernel files manually to match the layout in the efi directory on the boot/system-d boot partition referenced here, or you can chroot into the zfs filesystem, install the kernel-update script below, and run "**update-initramfs -u -k all**".  
 If it goes well, it should take care of the boot for you.  
+  
 Note: You should see a message that says the kernel (with version) was successfully installed running the above script.  
 If there's no out then there's an issue generating the kernel e.g. missing headers, /boot/efi isn't mounted, /boot isn't a writable fs, etc.
 
