@@ -54,3 +54,6 @@ Example fstab for mounting the systemd-boot partition to /boot/efi once the zfs-
 In this example the systemd-boot partition (/boot/efi) will only mount onto the zfs root once something tries to access it for the first time e.g. a kernel update.  
 If you "**ls -la /boot/efi**" prior to actually trying to write to the device, you likely won't see anything.  
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
+
+# Kernel-update scripts
+Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.
