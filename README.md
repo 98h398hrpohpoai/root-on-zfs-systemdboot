@@ -51,7 +51,10 @@ To make your zpool bootable you have two options. Both require you to mount the 
 2. Chroot into the zfs filesystem, install the kernel-update script below, and run "**update-initramfs -u -k all**".  (this validates the script as well)
 If it goes well, it should take care of the boot for you.  
   
-Note: With method #2 you should see a message that says the kernel (with version) was successfully installed.  
+Note: With method #2 you should see (xxxxxx being the kernel version):  
+- update-initramfs: Generating /boot/initrd.img-xxxxxx
+- systemd-boot xxxxxx
+
 If there's no out then there's an issue generating the kernel e.g. missing headers, /boot/efi isn't mounted, /boot isn't a writable fs, etc.  
 If you've ruled out any errors in the script, I've sometimes found purging and reinstalling the kernel resolves the issue.
 
