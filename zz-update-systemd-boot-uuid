@@ -5,7 +5,7 @@
 UUID="CHANGEME"
 OS="CHANGEME E.G. Debian"
 OSV="CHANGEME E.G. Buster"
-ROOTTYPE="CHANGEME; ONLY AFFECTS OS DISPLAY IN MENU E.G. ext4"
+ROOTTYPE="CHANGEME; ONLY AFFECTS OS DISPLAYNAME IN MENU E.G. ext4"
 KERNELPARAMETERS="CHANGEME; Add extra options here e.g. quiet splash; leave empty if not using any options"
 
 # Our kernels.
