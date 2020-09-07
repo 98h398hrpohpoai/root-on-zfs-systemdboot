@@ -92,4 +92,12 @@ cd /etc/kernel/postrm.d/ && ln -s ../postinst.d/zz-update-systemd-boot zz-update
 
 # And now we can add the symlink:
 cd /etc/initramfs/post-update.d/ && ln -s ../../kernel/postinst.d/zz-update-systemd-boot zz-update-systemd-boot
+```  
+Note: If grub was previously installed then remove grub as well.
+```
+# Purge the packages.
+apt-get purge grub*
+
+# Purge any obsolete dependencies.
+apt-get autoremove --purge
 ```
