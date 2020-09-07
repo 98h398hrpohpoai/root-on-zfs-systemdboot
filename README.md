@@ -60,7 +60,8 @@ If there's no output then there's an issue generating the kernel e.g. missing he
 If you've ruled out any errors in the update script, I've sometimes found purging and reinstalling the kernel resolves the issue.
 
 # efi folder
-Example hierarchy of the systemd-boot/efi partition.
+Example hierarchy of the systemd-boot/efi partition.  
+Includes loader entries for zfs-on-root as well as standard (ext4/UUID) partitions.
 
 # fstab
 Example fstab for mounting the systemd-boot partition to /boot/efi once the zfs-root is fully loaded.  
