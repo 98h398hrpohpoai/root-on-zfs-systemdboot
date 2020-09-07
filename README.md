@@ -41,9 +41,8 @@ In the case of a freshly formatted drive, /dev/xxx might be something like /dev/
 - "**mkfs.vfat -F 32 -s 1 /dev/xxxy**" 
   - Creates the fat32 filesystem on the newly created partition
 
-I honestly forgot why -s 1 (or -s 2) is sometimes needed.  
-Something about the filesystem size not being large enough; this has always worked for me when "**mkfs.vfat -F 32 /dev/xxxy**" hasn't.  
-I frequently got errors so it's included by default.
+"-s 1 (or -s 2)" is sometimes needed as the OS may complain about filesize.  
+You can try without using "**mkfs.vfat -F 32 /dev/xxxy**", although there's no functional difference.  
 
 "**blkid**" will provide the UUID for use in the fstab discussed below.
 
