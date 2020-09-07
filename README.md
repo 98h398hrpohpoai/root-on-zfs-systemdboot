@@ -72,7 +72,8 @@ If you "**ls -la /boot/efi**" prior to actually trying to write to the device, y
 There's no need to mount an extra filesystem (especially a boot partition) if it won't be in use.
 
 # Kernel-update scripts
-Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.  
+Originally published by Josh Stoik at [Blobfolio](https://blobfolio.com/2018/06/replace-grub2-with-systemd-boot-on-ubuntu-18-04/) and adapted for zfs.   
+This is necessary if you want to automatically update the kernel on the boot partition (otherwise the booting kernel will never change despite upgrading it on the zfs filesystem).  
 Per those instructions, the "zz-" script can be copied into "**/etc/kernel/postinst.d/**".  
 Only copy the script appropriate to the OS e.g. \*-zfs for a zfs root, or \*-uuid for a non-zfs root i.e. ext4.   
 Then follow his instructions below:  
