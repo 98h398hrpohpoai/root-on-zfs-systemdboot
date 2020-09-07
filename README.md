@@ -61,7 +61,7 @@ If you've ruled out any errors in the update script, I've sometimes found purgin
 
 # efi folder
 Example hierarchy of the systemd-boot/efi partition.  
-Includes loader entries for zfs-on-root as well as standard (ext4/UUID) partitions.
+Includes loader entries for zfs-on-root as well as standard (ext4/UUID) partitions.  
 Note the full path may look like /boot/efi/EFI/Debian-Buster/kernel-data or /boot/efi/loader/entries/Debian-Buster.conf
 
 # fstab
