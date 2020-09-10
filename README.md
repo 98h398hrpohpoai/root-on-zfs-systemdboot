@@ -32,14 +32,13 @@ Effectively the same as "**zpool import -R /mnt somepool**" if you maintain sepa
 
 # Boot partition (/boot/efi)
 Boot partition is a separate device from the zpool, and formatted in vfat/fat32 with the boot flag enabled.  
-/dev/xxx is the device name e.g. /dev/sda; y is the partition number of that device.  
-In the case of a freshly formatted drive, /dev/xxx might be something like /dev/sda and y = 1 (whichever partition was just created) e.g. /dev/sda1.  
-- "**parted /dev/xxx mkpart "Bootloader" fat32 4096s 1GB**" 
+- "**parted /dev/sdx mkpart "Bootloader" fat32 4096s 1GB**" 
   - Creates a 1GB partition, although you can go smaller if you're space-constrained.  
   Three Linux kernels and a Windows bootloader + recovery only uses ~240M. 
-- "**parted /dev/xxx set y BOOT ON**" 
+- "**parted /dev/sdx set y BOOT ON**" 
+  - "y" being the newly created partition number (type "p" while in parted if not sure which partition you're looking for)
   - Activates the "boot" flag the newly created partition
-- "**mkfs.vfat -F 32 -s 1 /dev/xxxy**" 
+- "**mkfs.vfat -F 32 -s 1 /dev/sdxy**" 
   - Creates the fat32 filesystem on the newly created partition
   - "-s 1" may or may not be needed depending on whether the device is formatted with 512b or 4k sectors.  
 
