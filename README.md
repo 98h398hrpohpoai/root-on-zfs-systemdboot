@@ -3,7 +3,7 @@ This example is completed with dual-booting two Debian-based distros both with r
 Specifically, Debian Buster and Bullseye both on the same zpool, as well as an ext4-based installation of Ubuntu for recovery purposes.  
 Reference for [Root-on-ZFS with Debian Buster](https://openzfs.github.io/openzfs-docs/Getting%20Started/Debian/Debian%20Buster%20Root%20on%20ZFS.html).
   
-Zpool name = data  
+Example zpool name = data  
 Dataset hierarchy (bold datasets have no mountpoint and are for organization purposes only):  
 - **data/dpool**  
 - data/dpool/buster (OS)                     
